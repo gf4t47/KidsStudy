@@ -46,3 +46,10 @@ months = [
     'November',
     'December',
 ]
+
+dictionary = {
+    'days': days,
+    'shapes': shapes,
+    'colors': colors,
+    'months': months
+}
