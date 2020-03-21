@@ -5,7 +5,7 @@ shapes = [
     'square',
     'oval',
     'diamond',
-    'start',
+    'star',
     'heart'
 ]
 
