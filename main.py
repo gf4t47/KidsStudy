@@ -23,5 +23,5 @@ dict_para = 'name'
 parser = argparse.ArgumentParser()
 parser.add_argument(dict_para)
 args = vars(parser.parse_args())
-md_file = write_markdown(args[dict_para])
+md_file = write_markdown(args[dict_para].lower())
 Popen(['typora', md_file], close_fds=True)
