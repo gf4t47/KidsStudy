@@ -8,7 +8,11 @@ import argparse
 
 
 def write_markdown(name: str, path: str = './out') -> Path:
-    s = shuffle_list(dictionary[name])
+    key = name.lower()
+    if key not in dictionary:
+        raise KeyError(f'Unknown words dictionary {name}')
+
+    s = shuffle_list(dictionary[key])
     md = markdown(s)
     print(md)
 
@@ -23,5 +27,6 @@ dict_para = 'name'
 parser = argparse.ArgumentParser()
 parser.add_argument(dict_para)
 args = vars(parser.parse_args())
-md_file = write_markdown(args[dict_para].lower())
+
+md_file = write_markdown(args[dict_para])
 Popen(['typora', md_file], close_fds=True)
