@@ -3,12 +3,12 @@ from pathlib import Path
 from subprocess import Popen
 
 from src.format import markdown
-from src.to_words import num_words
+from src.num_to_words import num_to_words
 
 
 def write_markdown(boundary: int, path: str = './out') -> Path:
-    words = [num_words(num) for num in range(1, boundary)]
-    md = markdown(words, '##')
+    words = [(str(num) + ': ' + num_to_words(num)) for num in range(0, boundary)]
+    md = markdown(words, '######')
     print(md)
 
     output = Path(path, 'numbers').with_suffix('.md')
@@ -23,5 +23,7 @@ parser = argparse.ArgumentParser()
 parser.add_argument(dict_para)
 args = vars(parser.parse_args())
 
-md_file = write_markdown(args[dict_para])
+
+high = int(args[dict_para]);
+md_file = write_markdown(high)
 Popen(['typora', md_file], close_fds=True)
