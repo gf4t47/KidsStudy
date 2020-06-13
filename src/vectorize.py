@@ -1,5 +1,5 @@
 from random import shuffle
-from typing import List
+from typing import Iterable, Sequence, List
 
 
 def shuffle_list(items: List[str]) -> List[str]:

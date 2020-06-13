@@ -1,13 +1,18 @@
 from pathlib import Path
 
 from data.word_dictionary import dictionary
-from src.randomization import shuffle_list
+from src.vectorize import shuffle_list
 from src.format import markdown_headers
 from subprocess import Popen
 import argparse
 
 
 def write_markdown(name: str, path: str = './out') -> Path:
+    """
+    :param name: key in dictionary
+    :param path: output path
+    :return: output file IO ref
+    """
     key = name.lower()
     if key not in dictionary:
         raise KeyError(f'Unknown words dictionary {name}')
