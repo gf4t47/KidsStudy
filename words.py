@@ -13,7 +13,7 @@ def write_markdown(name: str, path: str = './out') -> Path:
         raise KeyError(f'Unknown words dictionary {name}')
 
     s = shuffle_list(dictionary[key])
-    md = markdown(s)
+    md = markdown(s, '#', lambda w: w.capitalize())
     print(md)
 
     output = Path(path, name).with_suffix('.md')

@@ -1,5 +1,5 @@
-from typing import List
+from typing import List, Callable
 
 
-def markdown(words: List[str], tag: str = '#') -> List[str]:
-    return [tag + ' ' + word.capitalize() for word in words]
+def markdown(words: List[str], tag: str = '#', convert: Callable[[str], str] = lambda w: w) -> List[str]:
+    return [tag + ' ' + convert(word) for word in words]
