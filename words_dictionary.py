@@ -2,7 +2,7 @@ from pathlib import Path
 
 from data.word_dictionary import dictionary
 from src.randomization import shuffle_list
-from src.format import markdown
+from src.format import markdown_headers
 from subprocess import Popen
 import argparse
 
@@ -13,7 +13,7 @@ def write_markdown(name: str, path: str = './out') -> Path:
         raise KeyError(f'Unknown words dictionary {name}')
 
     s = shuffle_list(dictionary[key])
-    md = markdown(s, '#', lambda w: w.capitalize())
+    md = markdown_headers(s, '#', lambda w: w.capitalize())
     print(md)
 
     output = Path(path, name).with_suffix('.md')

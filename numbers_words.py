@@ -2,13 +2,13 @@ import argparse
 from pathlib import Path
 from subprocess import Popen
 
-from src.format import markdown
+from src.format import markdown_table
 from src.num_to_words import num_to_words
 
 
-def write_markdown(boundary: int, path: str = './out') -> Path:
-    words = [(str(num) + ': ' + num_to_words(num)) for num in range(0, boundary)]
-    md = markdown(words, '######')
+def write_markdown(high: int, low: int, path: str = './out') -> Path:
+    words = [[str(num), num_to_words(num)] for num in range(low, high)]
+    md = markdown_table(['Number', 'Words'], words)
     print(md)
 
     output = Path(path, 'numbers').with_suffix('.md')
@@ -18,12 +18,12 @@ def write_markdown(boundary: int, path: str = './out') -> Path:
     return output
 
 
-dict_para = 'name'
+para_name = 'range'
 parser = argparse.ArgumentParser()
-parser.add_argument(dict_para)
-args = vars(parser.parse_args())
+parser.add_argument(para_name, type=int, nargs='+')
+args = vars(parser.parse_args())[para_name]
+[low, high] = [args[0], args[1]] if len(args) > 1 else [0, args[0]]
 
 
-high = int(args[dict_para]);
-md_file = write_markdown(high)
+md_file = write_markdown(high, low)
 Popen(['typora', md_file], close_fds=True)
