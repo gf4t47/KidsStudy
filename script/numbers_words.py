@@ -29,7 +29,7 @@ para_name = 'range'
 parser = argparse.ArgumentParser()
 parser.add_argument(para_name, type=int, nargs='+')
 args = vars(parser.parse_args())[para_name]
-[low, high] = [args[0], args[1]] if len(args) > 1 else [0, args[0]]
+(low, high) = (args[0], args[1]) if len(args) > 1 else (0, args[0])
 
 
 md_file = write_markdown((low, high))
