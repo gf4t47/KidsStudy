@@ -34,4 +34,4 @@ parser.add_argument(dict_para)
 args = vars(parser.parse_args())
 
 md_file = write_markdown(args[dict_para])
-Popen(['typora', md_file], close_fds=True)
+Popen(['subl', md_file], close_fds=True)
